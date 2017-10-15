@@ -11,7 +11,6 @@ from chainer import serializers
 from chainer.training import extensions
 from chainer.dataset import convert
 from chainer.functions.loss.mean_squared_error import mean_squared_error
-import cupy as cp
 import numpy as np
 
 from change_learning_rate import ChangeLearningRate
@@ -33,6 +32,7 @@ def pretraining():
     batchsize = args.batchsize
     model = StackedDenoisingAutoEncoder(input_dim=train.shape[1])
     if chainer.cuda.available and args.gpu >= 0:
+        import cupy as cp
         xp = cp
         model.to_gpu(gpu_id)
     xp.random.seed(seed)
