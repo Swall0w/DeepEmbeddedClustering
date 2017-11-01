@@ -107,3 +107,4 @@ Include/
 Scripts/
 tcl/
 man/
+mnist*
